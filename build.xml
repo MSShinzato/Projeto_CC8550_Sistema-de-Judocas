@@ -1,38 +1,141 @@
-<project name="MyProject" default="dist" basedir=".">
-  <description>
-    simple example build file
-  </description>
-  <!-- set global properties for this build -->
-  <property name="src" location="src"/>
-  <property name="build" location="build"/>
-  <property name="dist" location="dist"/>
-
-  <target name="init">
-    <!-- Create the time stamp -->
-    <tstamp/>
-    <!-- Create the build directory structure used by compile -->
-    <mkdir dir="${build}"/>
-  </target>
-
-  <target name="compile" depends="init"
-        description="compile the source">
-    <!-- Compile the Java code from ${src} into ${build} -->
-    <javac srcdir="${src}" destdir="${build}"/>
-  </target>
-
-  <target name="dist" depends="compile"
-        description="generate the distribution">
-    <!-- Create the distribution directory -->
-    <mkdir dir="${dist}/lib"/>
-
-    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-    <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
-  </target>
-
-  <target name="clean"
-        description="clean up">
-    <!-- Delete the ${build} and ${dist} directory trees -->
-    <delete dir="${build}"/>
-    <delete dir="${dist}"/>
-  </target>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="JitaKyoei">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="11"/>
+    <property name="source" value="11"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="../../.p2/pool/plugins/org.junit_4.13.2.v20211018-1956.jar"/>
+        <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+    </path>
+    <path id="JitaKyoei.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <pathelement location="lib/genesis/dist/genesis-aspect-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-aspect-annotated-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-client-swt-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-client-thinlet-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-container-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-server-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-shared-3.2.jar"/>
+        <pathelement location="lib/genesis/lib/commons/commons-digester-1.8.jar"/>
+        <pathelement location="lib/genesis/lib/commons/commons-validator-1.3.1.jar"/>
+        <pathelement location="lib/genesis/lib/commons/jakarta-oro-2.0.8.jar"/>
+        <pathelement location="lib/genesis/lib/script/bsf-2.4.0.jar"/>
+        <pathelement location="lib/genesis/lib/script/bsh-2.0b4.jar"/>
+        <pathelement location="lib/genesis/lib/script/commons-el-1.0.jar"/>
+        <pathelement location="lib/genesis/lib/script/commons-jxpath-1.2.jar"/>
+        <pathelement location="lib/genesis/lib/script/jakarta-taglibs-standard-1.1.2.jar"/>
+        <pathelement location="lib/genesis/lib/script/js-1.6R5.jar"/>
+        <pathelement location="lib/genesis/lib/script/jsp-api.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-annotation-jdk5-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-client-swing-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-client-3.2.jar"/>
+        <pathelement location="lib/genesis/lib/commons/commons-logging-1.1.jar"/>
+        <pathelement location="lib/genesis/lib/commons/commons-beanutils-1.7.jar"/>
+        <pathelement location="lib/genesis/lib/backport175/backport175-1.1.RC1-snapshot.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-shared-annotated-3.2.jar"/>
+        <pathelement location="lib/genesis/lib/commons/reusable-components-20060810.jar"/>
+        <pathelement location="lib/forms.jar"/>
+        <pathelement location="lib/jcalendar-1.3.3.jar"/>
+        <pathelement location="lib/TableLayout.jar"/>
+        <pathelement location="lib/TableLayout-javadoc.jar"/>
+        <pathelement location="lib/TableLayout-src.jar"/>
+    </path>
+    <path id="run.Main (1).classpath">
+        <path refid="JitaKyoei.classpath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <pathelement location="lib/genesis/dist/genesis-aspect-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-aspect-annotated-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-client-swt-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-client-thinlet-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-container-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-server-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-shared-3.2.jar"/>
+        <pathelement location="lib/genesis/lib/commons/commons-digester-1.8.jar"/>
+        <pathelement location="lib/genesis/lib/commons/commons-validator-1.3.1.jar"/>
+        <pathelement location="lib/genesis/lib/commons/jakarta-oro-2.0.8.jar"/>
+        <pathelement location="lib/genesis/lib/script/bsf-2.4.0.jar"/>
+        <pathelement location="lib/genesis/lib/script/bsh-2.0b4.jar"/>
+        <pathelement location="lib/genesis/lib/script/commons-el-1.0.jar"/>
+        <pathelement location="lib/genesis/lib/script/commons-jxpath-1.2.jar"/>
+        <pathelement location="lib/genesis/lib/script/jakarta-taglibs-standard-1.1.2.jar"/>
+        <pathelement location="lib/genesis/lib/script/js-1.6R5.jar"/>
+        <pathelement location="lib/genesis/lib/script/jsp-api.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-annotation-jdk5-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-client-swing-3.2.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-client-3.2.jar"/>
+        <pathelement location="lib/genesis/lib/commons/commons-logging-1.1.jar"/>
+        <pathelement location="lib/genesis/lib/commons/commons-beanutils-1.7.jar"/>
+        <pathelement location="lib/genesis/lib/backport175/backport175-1.1.RC1-snapshot.jar"/>
+        <pathelement location="lib/genesis/dist/genesis-shared-annotated-3.2.jar"/>
+        <pathelement location="lib/genesis/lib/commons/reusable-components-20060810.jar"/>
+        <pathelement location="lib/forms.jar"/>
+        <pathelement location="lib/jcalendar-1.3.3.jar"/>
+        <pathelement location="lib/TableLayout.jar"/>
+        <pathelement location="lib/TableLayout-javadoc.jar"/>
+        <pathelement location="lib/TableLayout-src.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="test">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="icones/icon_16x16">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="icones/icon_32x32">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <src path="test"/>
+            <src path="icones/icon_16x16"/>
+            <src path="icones/icon_32x32"/>
+            <classpath refid="JitaKyoei.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="Main (1)">
+        <java classname="org.fpij.jitakyoei.util.Main" failonerror="true" fork="yes">
+            <classpath refid="run.Main (1).classpath"/>
+        </java>
+    </target>
 </project>
